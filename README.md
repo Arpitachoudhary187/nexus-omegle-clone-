@@ -70,7 +70,9 @@ omegle-clone/
 npm install
 
 # Backend signalling server
-cd server && npm install && cd ..
+cd server
+npm install
+cd ..
 ```
 
 ### 2. Configure environment
