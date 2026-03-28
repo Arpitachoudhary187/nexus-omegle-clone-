@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #0a0a0f;
+    color: #e4e4e7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Thin custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2e2e40;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3e3e55;
+  }
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+@layer utilities {
+  .border-white\/8 {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Noise grain overlay for depth */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}
+
+/* ── Light mode overrides ─────────────────────────────────────────────────── */
+html:not(.dark) {
+  body {
+    background-color: #f4f4f8;
+    color: #18181b;
+  }
+
+  .bg-surface-900 { background-color: #f4f4f8; }
+  .bg-surface-800 { background-color: #ffffff; }
+  .bg-surface-700 { background-color: #f0f0f5; }
+  .bg-surface-600 { background-color: #e5e5ed; }
+  .bg-surface-500 { background-color: #d4d4e0; }
+
+  .border-white\/5 { border-color: rgba(0, 0, 0, 0.07); }
+  .border-white\/10 { border-color: rgba(0, 0, 0, 0.10); }
+
+  .text-zinc-200 { color: #27272a; }
+  .text-zinc-300 { color: #3f3f46; }
+  .text-zinc-400 { color: #52525b; }
+  .text-zinc-500 { color: #71717a; }
+  .text-zinc-600 { color: #a1a1aa; }
+  .text-zinc-700 { color: #d4d4d8; }
+
+  .bg-surface-700\/80 { background-color: rgba(240,240,245,0.9); }
+  .bg-surface-700\/60 { background-color: rgba(240,240,245,0.7); }
+}
+
+/* ── Video element normalisation ─────────────────────────────────────────── */
+video {
+  display: block;
+  object-fit: cover;
+}
