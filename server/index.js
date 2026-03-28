@@ -23,10 +23,12 @@ const app = express();
 app.use(cors());
 
 const httpServer = http.createServer(app);
+
 const io = new Server(httpServer, {
-  cors: { origin: '*', methods: ['GET', 'POST'] },
-  pingInterval: 10000,
-  pingTimeout: 5000,
+  cors: {
+    origin: "https://nexus-omegle-clone.vercel.app",
+    methods: ['GET', 'POST']
+  }
 });
 
 // ── State ─────────────────────────────────────────────────────────────────────
